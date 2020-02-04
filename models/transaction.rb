@@ -14,7 +14,7 @@ class Transaction
     @tag_id = options['tag_id']
   end
 
-  #does this work?
+  #does this work? yes
   def save()
     sql = "INSERT INTO transactions (amount, merchant_id, tag_id)
     VALUES ($1, $2, $3)
@@ -27,6 +27,7 @@ class Transaction
   def self.all()
     sql = "SELECT * FROM transactions"
     transactions = SqlRunner.run(sql)
+
     return transactions.map { |transaction| Transaction.new(transaction) }
   end
 
@@ -40,7 +41,7 @@ class Transaction
 
   def update()
     sql = "UPDATE transactions SET(amount, merchant_id, tag_id) = ($1, $2, $3) WHERE id = $4"
-    values = [@amount, @merchant_id, @tag_id]
+    values = [@amount, @merchant_id, @tag_id, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -49,9 +50,9 @@ class Transaction
     SqlRunner.run(sql)
   end
 
-  def delete(id)
+  def delete()
     sql = "DELETE FROM transactions WHERE id = $1"
-    values = [id]
+    values = [@id]
     SqlRunner.run(sql, values)
   end
 

@@ -63,6 +63,26 @@ end
 get '/show' do
   @transactions = Transaction.all
   @tags = Tag.all
+  erb(:"transactions/show")
+end
+@merchants = Merchant.all
+
+post '/transactions/delete/:id' do
+  transaction = Transaction.find_by_id(params[:id])
+  transaction.delete
+  redirect("/home")
+end
+
+get '/transactions/edit/:id' do
+  @transaction = Transaction.find_by_id(params[:id])
   @merchants = Merchant.all
+  @tags = Tag.all
+  erb(:"transactions/edit_transaction")
+end
+
+post '/transactions/:id' do
+  transaction = Transaction.new(params)
+  transaction.update
+  @transactions = Transaction.all
   erb(:"transactions/show")
 end

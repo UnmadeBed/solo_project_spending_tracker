@@ -4,5 +4,9 @@
 <p>Amount: <%= transaction.amount %></p>
 <p>Merchant: <%= transaction.merchant.name %></p>
 <p>Tag: <%= transaction.tag.name %></p>
+<form class="" action="/transactions/delete/<%=transaction.id%>" method="post"><input type="submit" name="" value="delete">
 
+</form>
+
+<button type="button" name="button"><a href="/transactions/edit/<%=transaction.id%>">Edit</a></button>
 <% end %>
