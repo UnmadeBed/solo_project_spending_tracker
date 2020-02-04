@@ -56,6 +56,17 @@ end
 
 post '/add_transaction' do
   @transactions = Transaction.new( params )
+  @tags = Tag.new( params )
+  @merchants = Merchant.new( params )
   @transactions.save()
+  @tags.save()
+  @merchants.save()
   erb(:"transactions/create")
+end
+
+get '/show' do
+  @transactions = Transaction.all
+  @tags = Tag.all
+  @merchants = Merchant.all
+  erb(:"transactions/show")
 end

@@ -1,1 +1,8 @@
 <p>This should contain a single transaction with all of it's details.</p>
+
+<% @transactions.each do |transaction| %>
+<p>Amount: <%= transaction.amount %></p>
+<p>Merchant: <%= transaction.merchant.name %></p>
+<p>Tag: <%= transaction.tag.name %></p>
+
+<% end %>

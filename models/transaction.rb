@@ -55,17 +55,19 @@ class Transaction
     SqlRunner.run(sql, values)
   end
 
+  def merchant
+    sql = "SELECT * FROM merchants WHERE id = $1"
+    values = [@merchant_id]
+    merchant = SqlRunner.run(sql, values)[0]
+    return Merchant.new(merchant)
+  end
 
-
-
-
-  #total method example.
- #  def Transaction.total()
- #   sql = "SELECT sum(amount)
- #   FROM transactions"
- #   total = SqlRunner.run(sql)
- #   return total.values.first.first.to_f.round(2)
- # end
+  def tag
+    sql = "SELECT * FROM tags WHERE id = $1"
+    values = [@tag_id]
+    tag = SqlRunner.run(sql, values)[0]
+    return Tag.new(tag)
+  end
 
 
 end
