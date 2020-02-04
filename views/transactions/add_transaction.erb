@@ -5,14 +5,14 @@
   <input id="amount" type="number" name="amount" />
 
   <label for="merchant-select">Select a merchant:</label>
-  <select id="merchant-select" name="id">
+  <select id="merchant-select" name="merchant_id">
     <%for merchant in @merchants%>
     <option value= "<%= merchant.id %>"> <%= merchant.name %> </option>
     <%end%>
   </select>
 
   <label for="tag-select">Select a tag:</label>
-  <select id="tag-select" name="id">
+  <select id="tag-select" name="tag_id">
     <%for tag in @tags%>
     <option value= "<%= tag.id %>"> <%= tag.name %> </option>
     <%end%>

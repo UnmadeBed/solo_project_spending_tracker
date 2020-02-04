@@ -1,6 +1,7 @@
 require_relative('../models/merchant')
 require_relative('../models/tag')
 require_relative('../models/transaction')
+require('pry')
 
 
 Transaction.delete_all()
@@ -65,5 +66,5 @@ transaction3 = Transaction.new({
   });
 transaction3.save()
 
-
+binding.pry
 nil
