@@ -11,11 +11,6 @@ class Tag
     @name = options['name']
   end
 
-  def self.delete_all
-    sql = "DELETE FROM tags"
-    SqlRunner.run(sql)
-  end
-
   def save()
     sql = "INSERT INTO tags (name)
     VALUES($1) RETURNING id"
@@ -36,12 +31,21 @@ class Tag
     return Tag.new(tag)
   end
 
-  def self.delete(id)
+  def update()
+    sql = "UPDATE tags SET(name) = ($1) WHERE id = $2"
+    values = [@name]
+    SqlRunner.run(sql, values)
+  end
+
+  def self.delete_all
+    sql = "DELETE FROM tags"
+    SqlRunner.run(sql)
+  end
+
+  def delete(id)
     sql = "DELETE FROM tags WHERE id = $1"
     values = [id]
     SqlRunner.run(sql, values)
   end
-
-
 
 end

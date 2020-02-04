@@ -12,11 +12,6 @@ class Merchant
     @location = options['location']
   end
 
-  def self.delete_all
-    sql = "DELETE FROM merchants"
-    SqlRunner.run(sql)
-  end
-
   def save()
     sql = "INSERT INTO merchants (name, location)
     VALUES($1, $2) RETURNING id"
@@ -37,14 +32,21 @@ class Merchant
     return Merchant.new(merchant)
   end
 
-  def self.delete(id)
+  def update()
+    sql = "UPDATE merchants SET(name, location) = ($1, $2) WHERE id = $3"
+    values = [@name, @location]
+    SqlRunner.run(sql, values)
+  end
+
+  def self.delete_all
+    sql = "DELETE FROM merchants"
+    SqlRunner.run(sql)
+  end
+
+  def delete(id)
     sql = "DELETE FROM merchants WHERE id = $1"
     values = [id]
     SqlRunner.run(sql, values)
   end
-
-
-
-
 
 end

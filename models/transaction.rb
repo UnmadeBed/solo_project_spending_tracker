@@ -14,11 +14,6 @@ class Transaction
     @tag_id = options['tag_id']
   end
 
-  def self.delete_all
-    sql = "DELETE FROM transactions"
-    SqlRunner.run(sql)
-  end
-
   #does this work?
   def save()
     sql = "INSERT INTO transactions (amount, merchant_id, tag_id)
@@ -43,11 +38,34 @@ class Transaction
     return Transaction.new(transaction)
   end
 
-  def self.delete(id)
+  def update()
+    sql = "UPDATE transactions SET(amount, merchant_id, tag_id) = ($1, $2, $3) WHERE id = $4"
+    values = [@amount, @merchant_id, @tag_id]
+    SqlRunner.run(sql, values)
+  end
+
+  def self.delete_all
+    sql = "DELETE FROM transactions"
+    SqlRunner.run(sql)
+  end
+
+  def delete(id)
     sql = "DELETE FROM transactions WHERE id = $1"
     values = [id]
     SqlRunner.run(sql, values)
   end
+
+
+
+
+
+  #total method example.
+ #  def Transaction.total()
+ #   sql = "SELECT sum(amount)
+ #   FROM transactions"
+ #   total = SqlRunner.run(sql)
+ #   return total.values.first.first.to_f.round(2)
+ # end
 
 
 end
