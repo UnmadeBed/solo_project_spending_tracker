@@ -1,7 +1,7 @@
 <p>Edit Transaction</p>
 
 <form method="post" action="/transactions/<%=@transaction.id%>">
-  <label for="name">Name:</label>
+  <label for="amount">Amount:</label>
   <input id="amount" type="number" name="amount" value = "<%=@transaction.amount%>"/>
 
   <label for="merchant-select">Select a merchant:</label>

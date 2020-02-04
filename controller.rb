@@ -35,7 +35,6 @@ end
 
 get '/edit_merchant' do
   @merchants = Merchant.all
-  @merchants = Merchant.all
   @tags = Tag.all
   erb(:"merchants/edit_merchant")
 end
@@ -84,5 +83,12 @@ post '/transactions/:id' do
   transaction = Transaction.new(params)
   transaction.update
   @transactions = Transaction.all
+  erb(:"transactions/show")
+end
+
+post '/add_merchant' do
+  merchant = Merchant.new(params)
+  merchant.update
+  @merchants = Merchant.all
   erb(:"transactions/show")
 end

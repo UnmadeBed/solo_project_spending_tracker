@@ -1,1 +1,5 @@
-<p>Edit Tag</p>
+<p>Edit Tags</p>
+
+<% @tags.each do |tag| %>
+<p>Tags: <%= tag.name %></p>
+<%end%>
