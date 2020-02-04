@@ -1,0 +1,8 @@
+<p>Home Page</p>
+
+<% @transactions.each do |transaction| %>
+<p>Amount: <%= transaction.amount %></p>
+<p>Merchant: <%= transaction.merchant_id %> </p>
+<p>Tag: <%= transaction.tag_id %> </p>
+
+<% end %>
