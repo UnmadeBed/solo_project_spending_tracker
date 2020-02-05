@@ -1,4 +1,6 @@
-<p>This should contain a single transaction with all of it's details.</p>
+<p>All Transactions</p>
+
+<p>Total: <%= Transaction.total() %></p>
 
 <% @transactions.each do |transaction| %>
 <p>Amount: <%= transaction.amount %></p>

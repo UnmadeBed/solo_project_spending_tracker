@@ -92,3 +92,9 @@ post '/add_merchant' do
   @merchants = Merchant.all
   erb(:"transactions/show")
 end
+
+post '/tags/delete/:id' do
+  tag = Tag.find_by_id(params[:id])
+  tag.delete
+  redirect("/home")
+end

@@ -73,6 +73,7 @@ class Transaction
   def self.total()
     sql = "SELECT SUM(amount) FROM transactions"
     total = SqlRunner.run(sql)
-    return total
+    return total.values.first
   end
+
 end
