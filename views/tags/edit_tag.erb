@@ -1,7 +1,10 @@
 <p>Edit Tags</p>
 
-<% @tags.each do |tag| %>
-<p>Tags: <%= tag.name %></p>
-<%end%>
+<form method="post" action="/edit_tag/<%=@tag.id%>">
+  <label for="name">Name:</label>
+  <input id="name" type="text" name="name" value ="<%=@tag.name%>" />
 
-<form class="" action="/tags/delete/<%=tag.id%>" method="post"><input type="submit" name="" value="delete">
+  <input type='submit' value="Submit Tag"/>
+</form>
+
+<form class="" action="/tags/delete/<%=@tag.id%>" method="post"><input type="submit" name="" value="delete">

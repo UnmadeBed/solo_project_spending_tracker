@@ -28,14 +28,11 @@ end
 
 get '/add_merchant' do
   @merchants = Merchant.all
-  @merchants = Merchant.all
-  @tags = Tag.all
   erb(:"merchants/add_merchant")
 end
 
-get '/edit_merchant' do
-  @merchants = Merchant.all
-  @tags = Tag.all
+get '/edit_merchant/:id' do
+  @merchant = Merchant.find_by_id(params[:id])
   erb(:"merchants/edit_merchant")
 end
 
@@ -46,11 +43,15 @@ get '/add_tag' do
   erb(:"tags/add_tag")
 end
 
-get '/edit_tag' do
-  @tags = Tag.all
-  @merchants = Merchant.all
-  @tags = Tag.all
+get '/edit_tag/:id' do
+  @tag = Tag.find_by_id(params[:id])
   erb(:"tags/edit_tag")
+end
+
+post '/edit_tag/:id' do
+  tag = Tag.new(params)
+  tag.update
+  redirect("/show_tags")
 end
 
 post '/add_transaction' do
@@ -88,13 +89,37 @@ end
 
 post '/add_merchant' do
   merchant = Merchant.new(params)
-  merchant.update
+  merchant.save
   @merchants = Merchant.all
-  erb(:"transactions/show")
+  erb(:"merchants/show")
 end
 
 post '/tags/delete/:id' do
   tag = Tag.find_by_id(params[:id])
   tag.delete
   redirect("/home")
+end
+
+get '/show_tags' do
+  @tags = Tag.all
+  erb(:"tags/show")
+end
+
+post '/show_tags' do
+  tag = Tag.new(params)
+  tag.save()
+  @tags = Tag.all
+  erb(:"tags/show")
+end
+
+get '/show_merchants' do
+  @merchants = Merchant.all
+  erb(:"merchants/show")
+end
+
+post '/edit_merchant/:id' do
+  merchant = Merchant.new(params)
+  merchant.save()
+  @merchants = Merchant.all
+  erb(:"merchants/show")
 end

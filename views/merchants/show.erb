@@ -1,0 +1,6 @@
+<p>All Merchants</p>
+
+<% for merchant in @merchants %>
+<p><%= merchant.name %></p>
+<a href="/edit_merchant/<%=merchant.id%>">Edit</a>
+<%end%>

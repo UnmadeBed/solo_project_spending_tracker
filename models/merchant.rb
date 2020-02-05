@@ -3,19 +3,18 @@ require_relative('./transaction')
 require_relative('./tag')
 
 class Merchant
-  attr_accessor :name, :location
+  attr_accessor :name
   attr_reader :id
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @name = options['name']
-    @location = options['location']
   end
 
   def save()
-    sql = "INSERT INTO merchants (name, location)
-    VALUES($1, $2) RETURNING id"
-    values = [@name, @location]
+    sql = "INSERT INTO merchants (name)
+    VALUES ($1) RETURNING id"
+    values = [@name]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
@@ -33,8 +32,8 @@ class Merchant
   end
 
   def update()
-    sql = "UPDATE merchants SET(name) = ($1) WHERE id = $2"
-    values = [@name]
+    sql = "UPDATE merchants SET name = $1 WHERE id = $2"
+    values = [@name, @id]
     SqlRunner.run(sql, values)
   end
 

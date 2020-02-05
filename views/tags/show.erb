@@ -1,0 +1,6 @@
+<p>All tags</p>
+
+<% for tag in @tags %>
+<p><%= tag.name %></p>
+<a href="/edit_tag/<%=tag.id%>">Edit</a>
+<%end%>

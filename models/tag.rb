@@ -27,13 +27,13 @@ class Tag
   def self.find_by_id(id)
     sql = "SELECT * FROM tags WHERE id = $1"
     values = [id]
-    tags = SqlRunner.run(sql, values)[0]
+    tag = SqlRunner.run(sql, values)[0]
     return Tag.new(tag)
   end
 
   def update()
-    sql = "UPDATE tags SET(name) = ($1) WHERE id = $2"
-    values = [@name]
+    sql = "UPDATE tags SET name = $1 WHERE id = $2"
+    values = [@name, @id]
     SqlRunner.run(sql, values)
   end
 

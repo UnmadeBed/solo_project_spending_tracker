@@ -10,20 +10,17 @@ Tag.delete_all()
 
 
 merchant1 = Merchant.new({
-  'name' => 'HMV',
-  'location' => 'Glasgow'
+  'name' => 'HMV'
   });
 merchant1.save()
 
 merchant2 = Merchant.new({
-  'name' => 'Boots',
-  'location' => 'NYC'
+  'name' => 'Boots'
   });
 merchant2.save()
 
 merchant3 = Merchant.new({
-  'name' => 'Costa',
-  'location' => 'Edinburgh'
+  'name' => 'Costa'
   });
 merchant3.save()
 
